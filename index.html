@@ -6,98 +6,158 @@
     <title>Wedding Invitation - Zin Htet Paing & Yoon Mi Mi Myo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
-        
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Padauk', sans-serif;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
             color: #4a4a4a;
             text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 20px 10px;
+            overflow-x: hidden;
         }
+
+        /* အသဲပုံလေးများ စီးကျသည့် Animation */
+        .heart {
+            position: fixed;
+            color: #e91e63;
+            font-size: 20px;
+            top: -10px;
+            z-index: 999;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ဖိတ်စာ ဘောင်ကွက် Container */
         .card {
-            max-width: 500px;
+            max-width: 550px;
             background: #ffffff;
-            margin: 30px auto;
-            padding: 40px 25px;
+            margin: 10px auto;
+            padding: 35px 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            border: 2px solid #f3e5f5;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
+            border: 2px solid #f8bbd0;
+            position: relative;
         }
+
         .header-title {
-            color: #ab47bc;
-            font-size: 18px;
-            letter-spacing: 1px;
+            color: #d81b60;
+            font-size: 22px;
+            font-weight: bold;
             margin-bottom: 10px;
         }
+
         .couple-names {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
-            color: #4a148c;
+            color: #880e4f;
             margin: 15px 0;
             line-height: 1.5;
         }
-        .divider {
-            height: 2px;
-            width: 80px;
-            background-color: #ce93d8;
-            margin: 20px auto;
-        }
-        .invitation-text {
-            font-size: 16px;
+
+        .section-text {
+            font-size: 17px;
             line-height: 1.8;
-            color: #616161;
-            margin-bottom: 25px;
+            color: #424242;
+            margin: 20px 0;
         }
-        .info-box {
-            background-color: #f3e5f5;
-            padding: 15px;
-            border-radius: 12px;
+
+        .photo {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 15px;
             margin: 15px 0;
-            font-size: 16px;
-            color: #4a148c;
-            text-align: left;
-            line-height: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
         }
+
+        .info-box {
+            background-color: #f8bbd0;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 16px;
+            color: #880e4f;
+            text-align: left;
+            line-height: 2.2;
+        }
+
         .map-btn {
             display: inline-block;
-            background: linear-gradient(45deg, #ab47bc, #8e24aa);
+            background: linear-gradient(45deg, #ec407a, #d81b60);
             color: white;
             padding: 12px 30px;
             text-decoration: none;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
-            margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(171, 71, 188, 0.3);
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #d81b60;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
+
+<!-- သီချင်းလင့်ခ်အမှန် ထည့်သွင်းထားသည် -->
+<audio id="weddingMusic" loop>
+    <source src="https://github.com/Affinet/ZinHtetPaing-YoonMiMiMyo/raw/refs/heads/main/videoplayback.m4a" type="audio/mp4">
+</audio>
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
 
 <div class="card">
     <div class="header-title">💕 မင်္ဂလာဖိတ်ကြားလွှာ 💕</div>
     
     <div class="couple-names">
         Zin Htet Paing<br>
-        <span style="font-size: 20px; color: #ab47bc;">&</span><br>
+        <span style="font-size: 22px; color: #ec407a;">&</span><br>
         Yoon Mi Mi Myo
     </div>
 
-    <div class="divider"></div>
+    <!-- ပထမ ဓာတ်ပုံ (photo1.jpg ဟု GitHub ထဲ တင်ရန်) -->
+    <img src="https://raw.githubusercontent.com/Affinet/ZinHtetPaing-YoonMiMiMyo/main/photo1.jpg" class="photo" alt="Wedding Photo 1">
 
-    <div class="invitation-text">
+    <div class="section-text">
         ကျန်းမာချမ်းသာစွန့်ဦး၍ မင်္ဂလာအခါတော်ရက်၌ အောက်ပါအစီအစဉ်အတိုင်း မင်္ဂလာဧည့်ခံပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် ချစ်ခင်လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။
     </div>
 
+    <!-- ဒုတိယ ဓာတ်ပုံ (photo2.jpg ဟု GitHub ထဲ တင်ရန်) -->
+    <img src="https://raw.githubusercontent.com/Affinet/ZinHtetPaing-YoonMiMiMyo/main/photo2.jpg" class="photo" alt="Wedding Photo 2">
+
+    <!-- မင်္ဂလာပွဲ အချက်အလက်များ -->
     <div class="info-box">
-        📅 <b>မင်္ဂလာရက်စွဲ -</b> [ 29.11.2026 ( Sunday) ]<br>
-        ⏰ <b>အချိန် -</b> [ 7:00 AM မှ 12:00 PM ]<br>
-        📍 <b>ကျင်းပမည့်နေရာ -</b> [ မိန်းမရဲကျေးရွာ ဦးမြင့်ဆွေ+ဒေါ်လှဝင်းကြည်တို့၏ နေအိမ်မင်္ဂလာမဏ္ဍပ်သို့]
+        📅 <b>ရက်စွဲ -</b> 29.11.2026 (တန်ဆောင်မုန်း လပြည့်ကျော် ၅ ရက်)<br>
+        ⏰ <b>အချိန် -</b> မနက် ၇ နာရီမှ နေ့လည် ၁၂ နာရီ အထိ (7:00 AM to 12:00 PM)<br>
+        📍 <b>လိပ်စာ -</b> ပြည်မြို့နယ်၊ မြွေရိုးအုပ်စု၊ မိန်းမရဲကျေးရွာ၊ ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏နေအိမ် မင်္ဂလာမဏ္ဍပ်
     </div>
 
-    <a href="https://maps.google.com" class="map-btn" target="_blank">🗺️ Google Map ဖြင့် လမ်းကြောင်းရှာရန်</a>
-</div>
+    <!-- တတိယ ဓာတ်ပုံ (photo3.jpg ဟု GitHub ထဲ တင်ရန်) -->
+    <img src="https://raw.githubusercontent.com/Affinet/ZinHtetPaing-YoonMiMiMyo/main/photo3.jpg" class="photo" alt="Wedding Photo 3">
 
-</body>
-</html>
+    <div class="section-text">
+        ကြွရောက်လာပေးကြပါသော ဧည့်သည်တော်များအားလုံးကို အထူးပင် ကျေး

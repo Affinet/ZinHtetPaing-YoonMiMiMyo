@@ -155,4 +155,84 @@
 <div class="photo-wrapper"><img src="1_20261116_230638_0000.png" class="wedding-photo" alt="Photo 1"></div>
 <div class="photo-wrapper"><img src="2_20261116_230638_0001.png" class="wedding-photo" alt="Photo 2"></div>
 <div class="photo-wrapper"><img src="3_20261116_230638_0002.png" class="wedding-photo" alt="Photo 3"></div>
-<div class="photo-wrapper"><img src="4_20261116_230638_0003.png" class="wedding-photo" alt
+<div class="photo-wrapper"><img src="4_20261116_230638_0003.png" class="wedding-photo" alt="Photo 4"></div>
+<div class="photo-wrapper"><img src="5_20261116_230638_0004.png" class="wedding-photo" alt="Photo 5"></div>
+<div class="photo-wrapper"><img src="6_20261116_230638_0005.png" class="wedding-photo" alt="Photo 6"></div>
+<div class="photo-wrapper"><img src="7_20261116_230638_0006.png" class="wedding-photo" alt="Photo 7"></div>
+<div class="photo-wrapper"><img src="8_20261116_230638_0007.png" class="wedding-photo" alt="Photo 8"></div>
+
+<!-- မင်္ဂလာပွဲ အချက်အလက်နှင့် QR Code များ -->
+<div class="photo-wrapper">
+    <div class="card">
+        <div class="sub-title">💕 မင်္ဂလာပွဲ အစီအစဉ် 💕</div>
+        <div class="info-box">
+            📅 <b>ရက်စွဲ -</b> 29.11.2026 (တန်ဆောင်မုန်း လပြည့်ကျော် ၅ ရက်)<br>
+            ⏰ <b>အချိန် -</b> မနက် ၇ နာရီမှ နေ့လည် ၁၂ နာရီ အထိ (7:00 AM to 12:00 PM)<br>
+            📍 <b>လိပ်စာ -</b> ပြည်မြို့နယ်၊ မြွေရိုးအုပ်စု၊ မိန်းမရဲကျေးရွာ၊ ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏နေအိမ် မင်္ဂလာမဏ္ဍပ်
+        </div>
+
+        <div class="sub-title" style="margin-top: 25px;">📍 လမ်းညွှန် QR & မင်္ဂလာလက်ဖွဲ့ QR များ</div>
+        <div class="qr-grid">
+            <!-- လိပ်စာ QR (Google Maps QR) -->
+            <div class="qr-item">
+                <img src="qrcode_428835051_05e7bb0648b343204036e8ac62dfef23.png" alt="Location QR">
+                <div class="qr-label">📍 မင်္ဂလာမဏ္ဍပ် လိပ်စာ (Google Map QR)</div>
+            </div>
+
+            <!-- KPay QR -->
+            <div class="qr-item">
+                <img src="1794060036689.jpg" alt="KBZPay QR">
+                <div class="qr-label">💙 KBZPay (Mg Zin Htet Paing)</div>
+            </div>
+
+            <!-- WavePay QR -->
+            <div class="qr-item">
+                <img src="Screenshot_20261115_232011_WavePay.jpg" alt="WavePay QR">
+                <div class="qr-label">💛 WavePay (Zin Htet Paing)</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Scroll ဆွဲသည့်အခါ ပုံများ ညင်သာစွာ ပေါ်လာစေရန်
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.photo-wrapper').forEach(item => {
+        observer.observe(item);
+    });
+
+    // အသဲပုံလေးများ စီးကျစေသည့် Animation
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 350);
+
+    // သီချင်း ဖွင့်/ပိတ် ခလုတ်
+    function toggleMusic() {
+        const music = document.getElementById('weddingMusic');
+        const btn = document.querySelector('.music-btn');
+        if (music.paused) {
+            music.play();
+            btn.innerHTML = '🔊';
+        } else {
+            music.pause();
+            btn.innerHTML = '🎵';
+        }
+    }
+</script>
+
+</body>
+</html>

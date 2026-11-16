@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation - Zin Htet Paing နှင့် Yoon Mi Mi Myo</title>
+    <title>Wedding Invitation - Zin Htet Paing & Yoon Mi Mi Myo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Padauk', sans-serif;
-            background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
-            color: #4a4a4a;
+            background-color: #1a0507; /* မင်္ဂလာဆန်သော ရဲရင့်သည့် အနီရောင်မှိုင်း */
+            color: #fff5f8;
             text-align: center;
-            margin: 0;
-            padding: 20px 10px;
             overflow-x: hidden;
         }
 
         /* အသဲပုံလေးများ စီးကျသည့် Animation */
         .heart {
             position: fixed;
-            color: #e91e63;
+            color: #ff4081;
             font-size: 20px;
             top: -10px;
             z-index: 999;
@@ -38,63 +38,87 @@
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ဖိတ်စာ ဘောင်ကွက် Container */
-        .card {
-            max-width: 550px;
-            background: #ffffff;
-            margin: 10px auto;
-            padding: 35px 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
-            border: 2px solid #f8bbd0;
-            position: relative;
+        /* ပုံများကို အပေါ်မှအောက်သို့ ညင်သာစွာ ပေါ်လာစေရန် (Scroll Animation) */
+        .section-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
         }
 
-        .header-title {
-            color: #d81b60;
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .section-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ဖိတ်စာ Card ပုံစံ */
+        .card {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3); /* ရွှေရောင်ဘောင်ပါးပါး */
         }
 
         .couple-names {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
-            color: #880e4f;
+            color: #ffccd5;
             margin: 15px 0;
-            line-height: 1.5;
+            letter-spacing: 1px;
+        }
+
+        .sub-title {
+            font-size: 20px;
+            color: #d4af37; /* ရွှေရောင် */
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
         .section-text {
             font-size: 17px;
             line-height: 1.8;
-            color: #424242;
+            color: #fce4ec;
             margin: 20px 0;
+            text-align: justify;
+            padding: 0 10px;
         }
 
+        /* ဓာတ်ပုံများ Styling */
         .photo {
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             border-radius: 15px;
             margin: 15px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
+        /* အချက်အလက် ဘောက်စ် */
         .info-box {
-            background-color: #f8bbd0;
+            background-color: rgba(136, 14, 79, 0.4);
             padding: 20px;
             border-radius: 15px;
-            margin: 25px 0;
+            margin: 20px 0;
             font-size: 16px;
-            color: #880e4f;
+            color: #ffffff;
             text-align: left;
             line-height: 2.2;
+            border: 1px solid #d4af37;
         }
 
         .map-btn {
             display: inline-block;
-            background: linear-gradient(45deg, #ec407a, #d81b60);
+            background: linear-gradient(45deg, #d4af37, #ff4081);
             color: white;
             padding: 12px 30px;
             text-decoration: none;
@@ -102,74 +126,163 @@
             font-size: 17px;
             font-weight: bold;
             margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
+        /* သီချင်းဖွင့်/ပိတ် ခလုတ် */
         .music-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #d81b60;
-            color: white;
+            background: #d4af37;
+            color: #1a0507;
             border: none;
             border-radius: 50%;
             width: 55px;
             height: 55px;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             z-index: 1000;
         }
     </style>
 </head>
 <body>
 
-<!-- သီချင်းလင့်ခ်အမှန် ထည့်သွင်းထားသည် -->
+<!-- သီချင်းလင့်ခ် (GitHub ထဲရှိ song.mp3 သို့မဟုတ် videoplayback.m4a ဖြင့် ချိတ်ရန်) -->
 <audio id="weddingMusic" loop>
-    <source src="https://github.com/Affinet/ZinHtetPaing-YoonMiMiMyo/raw/refs/heads/main/videoplayback.m4a" type="audio/mp4">
+    <source src="song.mp3" type="audio/mpeg">
 </audio>
 <button class="music-btn" onclick="toggleMusic()">🎵</button>
 
-<div class="card">
-    <div class="header-title"> မင်္ဂလာဧည့်ခံပွဲဖိတ်ကြားလွှာ </div>
-    
-    <div class="couple-names">
-        Zin Htet Paing<br>
-        <span style="font-size: 22px; color: #ec407a;">&</span><br>
-        Yoon Mi Mi Myo
+<!-- ပုံ (၁) - မျက်နှာဖုံး ပုံ -->
+<div class="section-container">
+    <div class="card">
+        <div class="sub-title">💕 မင်္ဂလာဧည့်ခံပွဲ ဖိတ်ကြားလွှာ 💕</div>
+        <img src="photo1.jpg" class="photo" alt="Zin Htet Paing & Yoon Mi Mi Myo">
+        <div class="couple-names">Zin Htet Paing & Yoon Mi Mi Myo</div>
+        <p style="color: #d4af37; font-size: 18px;">WELCOME TO OUR WEDDING</p>
     </div>
+</div>
 
-    <!-- ပထမ ဓာတ်ပုံ (photo1.jpg ဟု GitHub ထဲ တင်ရန်) -->
-    <img src="https://raw.githubusercontent.com/Affinet/ZinHtetPaing-YoonMiMiMyo/main/photo1.jpg" class="photo" alt="Wedding Photo 1">
-
-    <div class="section-text">
-        ပဲခူးတိုင်းဒေသကြီး ( အနောက်ပိုင်း ) ၊ ပြည်မြို့နယ် ၊ မြွေရိုးအုပ်စု ၊ မိန်းမရဲကျေးရွာနေ
-        ( ဦးညဏ်တင် + ဒေါ်ကြည် ) ၊ ( ဦးပေါက်စ + ဒေါ်စောကြည်  ) တို့၏မြေး
-        ( ဦးသောင်းလှိုင် + ဒေါ်မြင့်သန်း ) ၊ ဦးမြင့်ဝေ + ဒေါ်ဝင်းစိန် ၊ ( ဦးဝင်းတင် ) + ဒေါ်ခင်သန်းဝင်း ၊ ( ဦးမြင့်နိူင် ) + ဒေါ်မြမြဝင်း တို့၏တူ
-        ကိုဇင်လင်းထွန်း ( ထွန်စက်ဝပ်လျှော့ ) + မအေးသီတာခိုင် ( B.A Myanmar ) ၊ ကိုဇင်ကိုလင်း Global Technology Group ( 5BB broadband ) တို့၏ ညီငယ်
-        ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏ သားငယ် 
-        မောင်ဇင်ထက်ပိုင် ( 3rd Year Chemistry ) 
-        နှင့် 
-        ပဲခူးတိုင်းဒေသကြီး ၊ ဆင်းမြီးဆွဲမြို့နယ် ၊ နွယ်ကောက်အုပ်စု ၊ သဲသယ်ကျေးရွာနေ 
-        ( ဦးမြင့်စိုး ) + ဒေါ်သိန်းနွဲ့ ၊ ဦးစောမောင် + ( ဒေါ်ကျင်စိန် ) တို့၏မြေး 
-        ဦးလှမျိုး + ဒေါ်နွယ်နွယ်ဝင်း တို့၏ တစ်ဦးတည်းသောသမီး 
-        မယွန်းမီမီမျိုး ( B.N.Sc )
-        တို့၏ 
-        မင်္ဂလာဧည့်ခံပွဲအခမ်းအနားသို့ ကြွရောက်ချီးမြင့်ပေးပါရန်လေးစားစွာဖြင့်ဖိတ်ကြားအပ်ပါသည်။
+<!-- ပုံ (၂) - ကြိုဆိုခြင်းနှင့် အမှတ်တရ -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo2.jpg" class="photo" alt="Wedding Photo 2">
+        <div class="section-text" style="text-align: center;">
+            "ချစ်ခြင်းမေတ္တာတို့ဖြင့် ပုံဖော်ထားသော ကျွန်ုပ်တို့၏ဘဝခရီးလမ်းသစ်သို့ မိတ်ဆွေအပေါင်းအား ရင်နှင့်အမျှ ဝမ်းမြောက်စွာဖြင့် ကြိုဆိုဖိတ်ကြားအပ်ပါသည်။"
+        </div>
     </div>
+</div>
 
-    <!-- ဒုတိယ ဓာတ်ပုံ (photo2.jpg ဟု GitHub ထဲ တင်ရန်) -->
-    <img src="https://raw.githubusercontent.com/Affinet/ZinHtetPaing-YoonMiMiMyo/main/photo2.jpg" class="photo" alt="Wedding Photo 2">
-
-    <!-- မင်္ဂလာပွဲ အချက်အလက်များ -->
-    <div class="info-box">
-        📅 <b>ရက်စွဲ -</b> 29.11.2026 (တန်ဆောင်မုန်း လပြည့်ကျော် ၅ ရက်)<br>
-        ⏰ <b>အချိန် -</b> မနက် ၇ နာရီမှ နေ့လည် ၁၂ နာရီ အထိ (7:00 AM to 12:00 PM)<br>
-        📍 <b>လိပ်စာ -</b> ပြည်မြို့နယ်၊ မြွေရိုးအုပ်စု၊ မိန်းမရဲကျေးရွာ၊ ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏နေအိမ် မင်္ဂလာမဏ္ဍပ်
+<!-- ပုံ (၃) - အချစ်ဖွဲ့ စာပိုဒ် -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo3.jpg" class="photo" alt="Wedding Photo 3">
+        <div class="sub-title">LOVE IS IN THE AIR</div>
+        <div class="section-text" style="text-align: center;">
+            အချိန်ကာလတွေ ဘယ်လိုပဲပြောင်းလဲပါစေ၊ တစ်ယောက်ကိုတစ်ယောက် နားလည်မှု၊ သည်းခံမှု၊ မေတ္တာတရားတွေနဲ့ အတူတူရှေ့ဆက်သွားကြပါမယ်။
+        </div>
     </div>
+</div>
 
-    <!-- တတိယ ဓာတ်ပုံ (photo3.jpg ဟု GitHub ထဲ တင်ရန်) -->
-    <img src="https://raw.githubusercontent.com/Affinet/ZinHtetPaing-YoonMiMiMyo/main/photo3.jpg" class="photo" alt="Wedding Photo 3">
+<!-- ပုံ (၄) - သတို့သမီးအကြောင်း (About the Bride) -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo4.jpg" class="photo" alt="About the Bride">
+        <div class="sub-title">ABOUT THE BRIDE</div>
+        <div class="section-text">
+            မိန်းမန်းက ကျွန်တော့်ဘဝရဲ့ အလှပဆုံးသော အမှတ်တရတစ်ခုပါပဲ။ ကျွန်တော် ပိုင်ဆိုင်ချင်ခဲ့တဲ့ အနာဂတ်တစ်ခုလည်း ဟုတ်ပါတယ်။ မိန်းမန်းရဲ့ အပြုံးလေးတွေကို အမြဲမြင်တွေ့ချင်သလို၊ မိန်းမန်းရဲ့ ပျော်ရွှင်မှုတိုင်းမှာလည်း ကျွန်တော် ပါဝင်ခွင့်ရချင်ပါတယ်။ ဘဝရဲ့ ဘယ်လိုအချိန်မျိုးမှာမဆို မိန်းမန်းရဲ့လက်ကို မြဲမြဲဆုပ်ကိုင်ပြီး ချစ်ခြင်းမေတ္တာတွေနဲ့ တစ်သက်တနိုင်ငံ စောင့်ရှောက်သွားချင်သူပါ။
+        </div>
+    </div>
+</div>
 
-    <div class="section-text">
-        ကြွရောက်လာပေးကြပါသော ဧည့်သည်တော်များအားလုံးကို အထူးပင် ကျေး
+<!-- ပုံ (၅) - သတို့သားအကြောင်း (About the Groom) -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo5.jpg" class="photo" alt="About the Groom">
+        <div class="sub-title">ABOUT THE GROOM</div>
+        <div class="section-text">
+            မောင်မောင်က မိန်းမန်းရဲ့ အပြုံးလေးတွေကို မြင်ရဖို့အတွက် အရာရာကို ကြိုးစားချင်သူတစ်ယောက်ပါ။ မိန်းမန်း ပင်ပန်းတဲ့အခါ အားကိုးရာဖြစ်ပေးချင်သလို၊ ဝမ်းနည်းတဲ့အခါ မှီခိုရာခိုရာလေးလည်း ဖြစ်ပေးချင်ပါတယ်။ မောင်မောင်နဲ့အတူ အဘမ်းသွားတဲ့အထိ ချစ်ခြင်းမေတ္တာတွေ မလျော့ဘဲ နေ့ရက်တိုင်းမှာ အသစ်တစ်ဖန် ချစ်သွားချင်ပါတယ်။ မောင်မောင်ဘဝမှာ အကောင်းဆုံးဆုံးဖြတ်ချက်တစ်ခုကတော့ မိန်းမန်းကို ရွေးချယ်ခဲ့ခြင်းပါပဲ။
+        </div>
+    </div>
+</div>
+
+<!-- ပုံ (၆) - ကျွန်ုပ်တို့တွေ့ဆုံခြင်း (How We Meet) -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo6.jpg" class="photo" alt="How We Meet">
+        <div class="sub-title">HOW WE MEET</div>
+        <div class="section-text">
+            လူနှစ်ယောက်ရဲ့ ဘဝလမ်းကြောင်းဟာ မတူညီခဲ့ပေမယ့် တစ်နေ့မှာတော့ ကံကြမ္မာက ကျွန်ုပ်တို့နှစ်ယောက်ကို ဆုံတွေ့စေခဲ့ပါတယ်။ အစပိုင်းမှာ သာမန်တွေ့ဆုံမှုလေးတစ်ခုသာ ဖြစ်ပေမယ့် တဖြည်းဖြည်းနဲ့ တစ်ယောက်အတွက်တစ်ယောက် အရေးပါလာခဲ့ကြပါတယ်။ အချိန်တွေ ဘယ်လောက်ပြောင်းလဲသွားပါစေ၊ ပထမဆုံးအဆုံးတွေ့ခဲ့တဲ့နေ့ကစလို့ ယနေ့အထိ မိန်းမန်းကို ရွေးချယ်ခဲ့တဲ့ ကျွန်တော့်ရဲ့စိတ်ကတော့ မပြောင်းလဲပါဘူး။
+        </div>
+    </div>
+</div>
+
+<!-- ပုံ (၇) - အမှတ်တရ ပုံများစုစည်းမှု -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo7.jpg" class="photo" alt="Our Memories">
+        <div class="sub-title">OUR SWEET MEMORIES</div>
+        <div class="section-text" style="text-align: center;">
+            "လက်တွဲဖော်ဘဝသို့ အတူတကွ ခြေလှမ်းလိုက်တော့မည့် ကျွန်ုပ်တို့နှစ်ဦးအတွက် မိတ်ဆွေတို့၏ မေတ္တာလက်ဆောင်နှင့် ဆုတောင်းစကားများက အကြီးမားဆုံး အားဖြည့်မှုတစ်ခု ဖြစ်ပါတယ်။"
+        </div>
+    </div>
+</div>
+
+<!-- ပုံ (၈) - မင်္ဂလာအခမ်းအနား အသေးစိတ် (The Big Day) -->
+<div class="section-container">
+    <div class="card">
+        <img src="photo8.jpg" class="photo" alt="The Big Day">
+        <div class="sub-title">THE BIG DAY</div>
+        <div class="info-box">
+            📅 <b>ရက်စွဲ -</b> 29.11.2026 (တန်ဆောင်မုန်း လပြည့်ကျော် ၅ ရက်)<br>
+            ⏰ <b>အချိန် -</b> မနက် ၇ နာရီမှ နေ့လည် ၁၂ နာရီ အထိ (7:00 AM to 12:00 PM)<br>
+            📍 <b>လိပ်စာ -</b> ပြည်မြို့နယ်၊ မြွေရိုးအုပ်စု၊ မိန်းမရဲကျေးရွာ၊ ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏နေအိမ် မင်္ဂလာမဏ္ဍပ်
+        </div>
+        <a href="https://maps.google.com" class="map-btn" target="_blank">🗺️ Google Map ဖြင့် လမ်းကြောင်းရှာရန်</a>
+    </div>
+</div>
+
+<script>
+    // အပေါ်မှအောက်သို့ Scroll ဆွဲသည့်အခါ ပုံများ ညင်သာစွာ ပေါ်လာစေရန် (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.section-container').forEach(section => {
+        observer.observe(section);
+    });
+
+    // အသဲပုံလေးများ စီးကျစေသည့် Animation Script
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 350);
+
+    // သီချင်း ဖွင့်/ပိတ် လုပ်ဆောင်သည့် Script
+    function toggleMusic() {
+        const music = document.getElementById('weddingMusic');
+        const btn = document.querySelector('.music-btn');
+        if (music.paused) {
+            music.play();
+            btn.innerHTML = '🔊';
+        } else {
+            music.pause();
+            btn.innerHTML = '🎵';
+        }
+    }
+</script>
+
+</body>
+</html>

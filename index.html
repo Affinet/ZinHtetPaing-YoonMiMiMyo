@@ -15,17 +15,18 @@
 
         body {
             font-family: 'Padauk', sans-serif;
-            background-color: #1a0507; /* မင်္ဂလာဆန်သော ရဲရင့်သည့် အနီရောင်မှိုင်း */
+            background-color: #1a0507;
             color: #fff5f8;
             text-align: center;
             overflow-x: hidden;
+            padding: 15px 10px 80px 10px;
         }
 
         /* အသဲပုံလေးများ စီးကျသည့် Animation */
         .heart {
             position: fixed;
             color: #ff4081;
-            font-size: 20px;
+            font-size: 18px;
             top: -10px;
             z-index: 999;
             user-select: none;
@@ -38,95 +39,90 @@
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ပုံများကို အပေါ်မှအောက်သို့ ညင်သာစွာ ပေါ်လာစေရန် (Scroll Animation) */
-        .section-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
+        /* ပုံတစ်ခုချင်းစီ အပေါ်မှအောက်သို့ ညင်သာစွာ ပေါ်လာစေရန် */
+        .photo-wrapper {
+            max-width: 600px;
+            margin: 12px auto; /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး အလွန်မကွာစေရန် */
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
         }
 
-        .section-container.visible {
+        .photo-wrapper.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* ဖိတ်စာ Card ပုံစံ */
-        .card {
-            max-width: 600px;
+        /* မင်္ဂလာဓာတ်ပုံများ Styling */
+        .wedding-photo {
             width: 100%;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            padding: 30px 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.3); /* ရွှေရောင်ဘောင်ပါးပါး */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            display: block;
         }
 
-        .couple-names {
-            font-size: 32px;
-            font-weight: bold;
-            color: #ffccd5;
-            margin: 15px 0;
-            letter-spacing: 1px;
+        /* အချက်အလက်နှင့် QR Code များ ထည့်သွင်းမည့် ဘောက်စ် */
+        .card {
+            max-width: 600px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 25px 15px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
         }
 
         .sub-title {
             font-size: 20px;
-            color: #d4af37; /* ရွှေရောင် */
-            margin-bottom: 10px;
+            color: #d4af37;
+            margin-bottom: 15px;
             font-weight: bold;
         }
 
-        .section-text {
-            font-size: 17px;
-            line-height: 1.8;
-            color: #fce4ec;
-            margin: 20px 0;
-            text-align: justify;
-            padding: 0 10px;
-        }
-
-        /* ဓာတ်ပုံများ Styling */
-        .photo {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            margin: 15px 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* အချက်အလက် ဘောက်စ် */
         .info-box {
-            background-color: rgba(136, 14, 79, 0.4);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
+            background-color: rgba(136, 14, 79, 0.45);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
             font-size: 16px;
             color: #ffffff;
             text-align: left;
-            line-height: 2.2;
+            line-height: 2.1;
             border: 1px solid #d4af37;
         }
 
-        .map-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #d4af37, #ff4081);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 17px;
-            font-weight: bold;
+        /* QR Code များ စီစဉ်မှု */
+        .qr-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
             margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .qr-item {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a0507;
+            padding: 15px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .qr-item img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .qr-label {
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 10px;
+            color: #880e4f;
         }
 
         /* သီချင်းဖွင့်/ပိတ် ခလုတ် */
@@ -142,147 +138,21 @@
             height: 55px;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             z-index: 1000;
         }
     </style>
 </head>
 <body>
 
-<!-- သီချင်းလင့်ခ် (GitHub ထဲရှိ song.mp3 သို့မဟုတ် videoplayback.m4a ဖြင့် ချိတ်ရန်) -->
+<!-- သီချင်းလင့်ခ်အမှန် -->
 <audio id="weddingMusic" loop>
-    <source src="song.mp3" type="audio/mpeg">
+    <source src="https://github.com/Affinet/ZinHtetPaing-YoonMiMiMyo/raw/refs/heads/main/videoplayback.m4a" type="audio/mp4">
 </audio>
 <button class="music-btn" onclick="toggleMusic()">🎵</button>
 
-<!-- ပုံ (၁) - မျက်နှာဖုံး ပုံ -->
-<div class="section-container">
-    <div class="card">
-        <div class="sub-title">💕 မင်္ဂလာဧည့်ခံပွဲ ဖိတ်ကြားလွှာ 💕</div>
-        <img src="1_20261116_230638_0000.png" class="photo" alt="Zin Htet Paing & Yoon Mi Mi Myo">
-        <div class="couple-names">Zin Htet Paing & Yoon Mi Mi Myo</div>
-        <p style="color: #d4af37; font-size: 18px;">WELCOME TO OUR WEDDING</p>
-    </div>
-</div>
-
-<!-- ပုံ (၂) - ကြိုဆိုခြင်းနှင့် အမှတ်တရ -->
-<div class="section-container">
-    <div class="card">
-        <img src="2_20261116_230638_0001.png" class="photo" alt="Wedding Photo 2">
-        <div class="section-text" style="text-align: center;">
-            "ချစ်ခြင်းမေတ္တာတို့ဖြင့် ပုံဖော်ထားသော ကျွန်ုပ်တို့၏ဘဝခရီးလမ်းသစ်သို့ မိတ်ဆွေအပေါင်းအား ရင်နှင့်အမျှ ဝမ်းမြောက်စွာဖြင့် ကြိုဆိုဖိတ်ကြားအပ်ပါသည်။"
-        </div>
-    </div>
-</div>
-
-<!-- ပုံ (၃) - အချစ်ဖွဲ့ စာပိုဒ် -->
-<div class="section-container">
-    <div class="card">
-        <img src="3_20261116_230638_0002.png" class="photo" alt="Wedding Photo 3">
-        <div class="sub-title">LOVE IS IN THE AIR</div>
-        <div class="section-text" style="text-align: center;">
-            အချိန်ကာလတွေ ဘယ်လိုပဲပြောင်းလဲပါစေ၊ တစ်ယောက်ကိုတစ်ယောက် နားလည်မှု၊ သည်းခံမှု၊ မေတ္တာတရားတွေနဲ့ အတူတူရှေ့ဆက်သွားကြပါမယ်။
-        </div>
-    </div>
-</div>
-
-<!-- ပုံ (၄) - သတို့သမီးအကြောင်း (About the Bride) -->
-<div class="section-container">
-    <div class="card">
-        <img src="4_20261116_230638_0003.png" class="photo" alt="About the Bride">
-        <div class="sub-title">ABOUT THE BRIDE</div>
-        <div class="section-text">
-            မိန်းမန်းက ကျွန်တော့်ဘဝရဲ့ အလှပဆုံးသော အမှတ်တရတစ်ခုပါပဲ။ ကျွန်တော် ပိုင်ဆိုင်ချင်ခဲ့တဲ့ အနာဂတ်တစ်ခုလည်း ဟုတ်ပါတယ်။ မိန်းမန်းရဲ့ အပြုံးလေးတွေကို အမြဲမြင်တွေ့ချင်သလို၊ မိန်းမန်းရဲ့ ပျော်ရွှင်မှုတိုင်းမှာလည်း ကျွန်တော် ပါဝင်ခွင့်ရချင်ပါတယ်။ ဘဝရဲ့ ဘယ်လိုအချိန်မျိုးမှာမဆို မိန်းမန်းရဲ့လက်ကို မြဲမြဲဆုပ်ကိုင်ပြီး ချစ်ခြင်းမေတ္တာတွေနဲ့ တစ်သက်တနိုင်ငံ စောင့်ရှောက်သွားချင်သူပါ။
-        </div>
-    </div>
-</div>
-
-<!-- ပုံ (၅) - သတို့သားအကြောင်း (About the Groom) -->
-<div class="section-container">
-    <div class="card">
-        <img src="5_20261116_230638_0004.png" class="photo" alt="About the Groom">
-        <div class="sub-title">ABOUT THE GROOM</div>
-        <div class="section-text">
-            မောင်မောင်က မိန်းမန်းရဲ့ အပြုံးလေးတွေကို မြင်ရဖို့အတွက် အရာရာကို ကြိုးစားချင်သူတစ်ယောက်ပါ။ မိန်းမန်း ပင်ပန်းတဲ့အခါ အားကိုးရာဖြစ်ပေးချင်သလို၊ ဝမ်းနည်းတဲ့အခါ မှီခိုရာခိုရာလေးလည်း ဖြစ်ပေးချင်ပါတယ်။ မောင်မောင်နဲ့အတူ အဘမ်းသွားတဲ့အထိ ချစ်ခြင်းမေတ္တာတွေ မလျော့ဘဲ နေ့ရက်တိုင်းမှာ အသစ်တစ်ဖန် ချစ်သွားချင်ပါတယ်။ မောင်မောင်ဘဝမှာ အကောင်းဆုံးဆုံးဖြတ်ချက်တစ်ခုကတော့ မိန်းမန်းကို ရွေးချယ်ခဲ့ခြင်းပါပဲ။
-        </div>
-    </div>
-</div>
-
-<!-- ပုံ (၆) - ကျွန်ုပ်တို့တွေ့ဆုံခြင်း (How We Meet) -->
-<div class="section-container">
-    <div class="card">
-        <img src="6_20261116_230638_0005.png" class="photo" alt="How We Meet">
-        <div class="sub-title">HOW WE MEET</div>
-        <div class="section-text">
-            လူနှစ်ယောက်ရဲ့ ဘဝလမ်းကြောင်းဟာ မတူညီခဲ့ပေမယ့် တစ်နေ့မှာတော့ ကံကြမ္မာက ကျွန်ုပ်တို့နှစ်ယောက်ကို ဆုံတွေ့စေခဲ့ပါတယ်။ အစပိုင်းမှာ သာမန်တွေ့ဆုံမှုလေးတစ်ခုသာ ဖြစ်ပေမယ့် တဖြည်းဖြည်းနဲ့ တစ်ယောက်အတွက်တစ်ယောက် အရေးပါလာခဲ့ကြပါတယ်။ အချိန်တွေ ဘယ်လောက်ပြောင်းလဲသွားပါစေ၊ ပထမဆုံးအဆုံးတွေ့ခဲ့တဲ့နေ့ကစလို့ ယနေ့အထိ မိန်းမန်းကို ရွေးချယ်ခဲ့တဲ့ ကျွန်တော့်ရဲ့စိတ်ကတော့ မပြောင်းလဲပါဘူး။
-        </div>
-    </div>
-</div>
-
-<!-- ပုံ (၇) - အမှတ်တရ ပုံများစုစည်းမှု -->
-<div class="section-container">
-    <div class="card">
-        <img src="7_20261116_230638_0006.png" class="photo" alt="Our Memories">
-        <div class="sub-title">OUR SWEET MEMORIES</div>
-        <div class="section-text" style="text-align: center;">
-            "လက်တွဲဖော်ဘဝသို့ အတူတကွ ခြေလှမ်းလိုက်တော့မည့် ကျွန်ုပ်တို့နှစ်ဦးအတွက် မိတ်ဆွေတို့၏ မေတ္တာလက်ဆောင်နှင့် ဆုတောင်းစကားများက အကြီးမားဆုံး အားဖြည့်မှုတစ်ခု ဖြစ်ပါတယ်။"
-        </div>
-    </div>
-</div>
-
-<!-- ပုံ (၈) - မင်္ဂလာအခမ်းအနား အသေးစိတ် (The Big Day) -->
-<div class="section-container">
-    <div class="card">
-        <img src="8_20261116_230638_0007.png" class="photo" alt="The Big Day">
-        <div class="sub-title">THE BIG DAY</div>
-        <div class="info-box">
-            📅 <b>ရက်စွဲ -</b> 29.11.2026 (တန်ဆောင်မုန်း လပြည့်ကျော် ၅ ရက်)<br>
-            ⏰ <b>အချိန် -</b> မနက် ၇ နာရီမှ နေ့လည် ၁၂ နာရီ အထိ (7:00 AM to 12:00 PM)<br>
-            📍 <b>လိပ်စာ -</b> ပြည်မြို့နယ်၊ မြွေရိုးအုပ်စု၊ မိန်းမရဲကျေးရွာ၊ ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏နေအိမ် မင်္ဂလာမဏ္ဍပ်
-        </div>
-        <a href="https://maps.google.com" class="map-btn" target="_blank">🗺️ Google Map ဖြင့် လမ်းကြောင်းရှာရန်</a>
-    </div>
-</div>
-
-<script>
-    // အပေါ်မှအောက်သို့ Scroll ဆွဲသည့်အခါ ပုံများ ညင်သာစွာ ပေါ်လာစေရန် (Intersection Observer)
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.section-container').forEach(section => {
-        observer.observe(section);
-    });
-
-    // အသဲပုံလေးများ စီးကျစေသည့် Animation Script
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(createHeart, 350);
-
-    // သီချင်း ဖွင့်/ပိတ် လုပ်ဆောင်သည့် Script
-    function toggleMusic() {
-        const music = document.getElementById('weddingMusic');
-        const btn = document.querySelector('.music-btn');
-        if (music.paused) {
-            music.play();
-            btn.innerHTML = '🔊';
-        } else {
-            music.pause();
-            btn.innerHTML = '🎵';
-        }
-    }
-</script>
-
-</body>
-</html>
+<!-- မင်္ဂလာဓာတ်ပုံ (၈) ပုံ (သင်ပေးထားသော နာမည်အသစ်များဖြင့် ချိတ်ဆက်ထားသည်) -->
+<div class="photo-wrapper"><img src="1_20261116_230638_0000.png" class="wedding-photo" alt="Photo 1"></div>
+<div class="photo-wrapper"><img src="2_20261116_230638_0001.png" class="wedding-photo" alt="Photo 2"></div>
+<div class="photo-wrapper"><img src="3_20261116_230638_0002.png" class="wedding-photo" alt="Photo 3"></div>
+<div class="photo-wrapper"><img src="4_20261116_230638_0003.png" class="wedding-photo" alt

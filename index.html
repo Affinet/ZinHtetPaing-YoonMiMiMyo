@@ -19,10 +19,10 @@
             color: #fff5f8;
             text-align: center;
             overflow-x: hidden;
-            padding: 15px 10px 80px 10px;
+            padding: 15px 10px 85px 10px;
         }
 
-        /* အသဲပုံလေးများ စီးကျသည့် Animation */
+        /* မျက်နှာပြင်ပေါ်တွင် အသဲပုံလေးများ စီးကျသည့် Animation */
         .heart {
             position: fixed;
             color: #ff4081;
@@ -42,7 +42,7 @@
         /* ပုံတစ်ခုချင်းစီ အပေါ်မှအောက်သို့ ညင်သာစွာ ပေါ်လာစေရန် */
         .photo-wrapper {
             max-width: 600px;
-            margin: 12px auto; /* ပုံတစ်ပုံနှင့်တစ်ပုံကြား အကွာအဝေး အလွန်မကွာစေရန် */
+            margin: 12px auto;
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.9s ease-out, transform 0.9s ease-out;
@@ -62,13 +62,13 @@
             display: block;
         }
 
-        /* အချက်အလက်နှင့် QR Code များ ထည့်သွင်းမည့် ဘောက်စ် */
+        /* ဖိတ်ကြားလွှာ၊ မင်္ဂလာအစီအစဉ်နှင့် QR Code များ ထည့်သွင်းမည့် ဘောက်စ် */
         .card {
             max-width: 600px;
-            margin: 20px auto;
+            margin: 16px auto;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
-            padding: 25px 15px;
+            padding: 25px 18px;
             border-radius: 18px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             border: 1.5px solid rgba(212, 175, 55, 0.4);
@@ -77,10 +77,36 @@
         .sub-title {
             font-size: 20px;
             color: #d4af37;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        /* ဖိတ်ကြားခြင်း စာပိုဒ်များ Styling */
+        .invitation-letter {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px 15px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .letter-paragraph {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #ffeef3;
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        .letter-paragraph:last-child {
+            margin-bottom: 0;
+            text-align: center;
+            color: #ffd6e4;
             font-weight: bold;
         }
 
+        /* မင်္ဂလာပွဲ အချက်အလက် ဘောက်စ် */
         .info-box {
             background-color: rgba(136, 14, 79, 0.45);
             padding: 18px;
@@ -145,13 +171,13 @@
 </head>
 <body>
 
-<!-- သီချင်းလင့်ခ်အမှန် -->
+<!-- နောက်ခံသီချင်း (Westlife - Beautiful in white) -->
 <audio id="weddingMusic" loop>
-    <source src="https://github.com/Affinet/ZinHtetPaing-YoonMiMiMyo/raw/refs/heads/main/videoplayback.m4a" type="audio/mp4">
+    <source src="https://github.com/Affinet/ZinHtetPaing-YoonMiMiMyo/raw/refs/heads/main/Westlife%20-%20Beautiful%20in%20white%20(Lyrics)%20(mp3cut.net).mp3" type="audio/mpeg">
 </audio>
-<button class="music-btn" onclick="toggleMusic()">🎵</button>
+<button class="music-btn" onclick="toggleMusic()" aria-label="Play or Pause Music">🎵</button>
 
-<!-- မင်္ဂလာဓာတ်ပုံ (၈) ပုံ (သင်ပေးထားသော နာမည်အသစ်များဖြင့် ချိတ်ဆက်ထားသည်) -->
+<!-- မင်္ဂလာဓာတ်ပုံ (၈) ပုံ -->
 <div class="photo-wrapper"><img src="1_20261116_230638_0000.png" class="wedding-photo" alt="Photo 1"></div>
 <div class="photo-wrapper"><img src="2_20261116_230638_0001.png" class="wedding-photo" alt="Photo 2"></div>
 <div class="photo-wrapper"><img src="3_20261116_230638_0002.png" class="wedding-photo" alt="Photo 3"></div>
@@ -161,9 +187,27 @@
 <div class="photo-wrapper"><img src="7_20261116_230638_0006.png" class="wedding-photo" alt="Photo 7"></div>
 <div class="photo-wrapper"><img src="8_20261116_230638_0007.png" class="wedding-photo" alt="Photo 8"></div>
 
-<!-- မင်္ဂလာပွဲ အချက်အလက်နှင့် QR Code များ -->
+<!-- ဖိတ်ကြားခြင်းစာ၊ မင်္ဂလာအစီအစဉ်နှင့် QR Code များ -->
 <div class="photo-wrapper">
     <div class="card">
+        <!-- မင်္ဂလာအစီအစဉ်အပေါ်ရှိ ဖိတ်ကြားခြင်းစာသား -->
+        <div class="sub-title">💌 အခမ်းအနားသို့ ချစ်ခြင်းမေတ္တာများဖြင့် ဖိတ်ကြားခြင်း 💌</div>
+        <div class="invitation-letter">
+            <p class="letter-paragraph">
+                ဘဝခရီးလမ်းတစ်လျှောက် မိသားစုလို ချစ်ခင်ရင်းနှီးခဲ့ကြတဲ့ မောင်နှမများ၊ သူငယ်ချင်းများနဲ့အတူ မျှဝေခဲ့ဖူးတဲ့ အမှတ်တရတွေဟာ ကျွန်ုပ်တို့အတွက် တန်ဖိုးမဖြတ်နိုင်တဲ့ အဖိုးတန်ရတနာများပဲ ဖြစ်ပါတယ်။
+            </p>
+            <p class="letter-paragraph">
+                နှစ်ယောက် ဆုံတွေ့ခြင်းထက် တစ်ယောက်ကိုတစ်ယောက် ရွေးချယ်ခဲ့ခြင်းက ပိုမိုလှပတဲ့ အဓိပ္ပာယ်တစ်ခု ဖြစ်ခဲ့ပါတယ်။
+            </p>
+            <p class="letter-paragraph">
+                မတူညီတဲ့ ဘဝခရီးနှစ်ခုကို တစ်လမ်းတည်းအဖြစ် ပေါင်းစည်းရင်း ပျော်ရွှင်ခြင်းတွေကို အတူမျှဝေဖို့၊ အခက်အခဲတွေကို အတူရင်ဆိုင်ဖို့၊ အိုမင်းသည့်တိုင် လက်တွဲမဖြုတ်ဖို့ နှလုံးသားနှစ်ခုက ကတိပြုခဲ့ကြပါပြီ။
+            </p>
+            <p class="letter-paragraph">
+                ထို့ကြောင့် မင်္ဂလာအခမ်းအနားသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားချစ်ခင်စွာ ဖိတ်ကြားအပ်ပါသည်။
+            </p>
+        </div>
+
+        <!-- မင်္ဂလာပွဲ အစီအစဉ် -->
         <div class="sub-title">💕 မင်္ဂလာပွဲ အစီအစဉ် 💕</div>
         <div class="info-box">
             📅 <b>ရက်စွဲ -</b> 29.11.2026 (တန်ဆောင်မုန်း လပြည့်ကျော် ၅ ရက်)<br>
@@ -171,6 +215,7 @@
             📍 <b>လိပ်စာ -</b> ပြည်မြို့နယ်၊ မြွေရိုးအုပ်စု၊ မိန်းမရဲကျေးရွာ၊ ဦးမြင့်ဆွေ + ဒေါ်လှဝင်းကြည် တို့၏နေအိမ် မင်္ဂလာမဏ္ဍပ်
         </div>
 
+        <!-- QR Code များ -->
         <div class="sub-title" style="margin-top: 25px;">📍 လမ်းညွှန် QR & မင်္ဂလာလက်ဖွဲ့ QR များ</div>
         <div class="qr-grid">
             <!-- လိပ်စာ QR (Google Maps QR) -->
@@ -195,7 +240,7 @@
 </div>
 
 <script>
-    // Scroll ဆွဲသည့်အခါ ပုံများ ညင်သာစွာ ပေါ်လာစေရန်
+    // Scroll ဆွဲသည့်အခါ ပုံများနှင့် စာပိုဒ်များ ညင်သာစွာ ပေါ်လာစေရန်
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
